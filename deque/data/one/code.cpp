@@ -32,10 +32,12 @@ void TestInteger()
 	sjtu::deque<Integer> dInt;
 	std::vector<Integer> vInt;
 	for (int i = 0; i < N; ++i) {
+    //std::cerr << i << std::endl;
 		vInt.push_back(Integer(randNum(i, N + 17)));
 		dInt.push_back(vInt[i]);
 	}
 	for (int i = 0; i < N; ++i) {
+    std::cerr << randNum(i, N + 17) << " " << dInt[i].data << std::endl;;
 		if (!(vInt[i] == dInt[i]))
 			error();
 	}
@@ -85,12 +87,16 @@ void TestCopyConstructorAndOperatorEqu()
 	sjtu::deque<long long> &dInt = *pInt;
 	sjtu::deque<long long> dualInt(dInt);
 	sjtu::deque<long long> dualInt_oper;
+  //std::cerr << "check" << std::endl;
 	dualInt_oper = dInt;
+  //std::cerr << "check" << std::endl;
 	for (long long i = 0; i < N; ++i)
 	{
+    //std::cerr << dualInt[i] << " " << dualInt_oper[i] << " " << dInt[i] << std::endl;
 		if (dualInt[i] != dInt[i] || dualInt_oper[i] != dInt[i])
 			error();
 	}
+  //std::cerr << "check" << std::endl;
 	dualInt_oper = dualInt_oper;
 	delete pInt;
 	for (long long i = 0; i < N; ++i)
@@ -162,6 +168,7 @@ void TestInsertAndErase()
 
 void TestPopAndPush()
 {
+  std::cerr << "check" << std::endl;
 	std::cout << "Test 8 : Test for pop() and push()...";
 	sjtu::deque<long long> dInt, drInt;
 	std::vector<long long> vInt;
@@ -184,10 +191,15 @@ void TestPopAndPush()
 	for (size_t i = 0; i < 107LL; ++i)
 	{
 		drInt.pop_front();
+    //std::cerr << drInt.size() << std::endl;
+    //std::cerr << drInt.head_ << " " << drInt.tail_ << " " << drInt.capacity_ << std::endl;
 		rInt.pop_back();
 	}
+  //std::cerr << "check" << " " << drInt.size() << std::endl;
+  //std::cerr << drInt.head_ << " " << drInt.tail_ << " " << drInt.capacity_ << std::endl;
 	for (size_t i = 0; i < 1007LL; ++i)
 	{
+    //std::cerr << dInt[i] << " " << vInt[i] << " " << drInt[1006LL - i] << " " << rInt[i] << " " << i << std::endl;
 		if (!(dInt[i] == vInt[i]))
 			error();
 		if (!(drInt[1006LL - i] == rInt[i]))

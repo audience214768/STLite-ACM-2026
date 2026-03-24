@@ -112,6 +112,7 @@ std::pair<bool, double> pushBackChecker() {
 }
 
 std::pair<bool, double> pushFrontChecker() {
+  //std::cerr << "check1" << std::endl;
 	std::deque<Int> a;
 	sjtu::deque<Int> b;
 	timer.init();
@@ -121,6 +122,7 @@ std::pair<bool, double> pushFrontChecker() {
 		b.push_front(tmp);
 	}
 	timer.stop();
+  //std::cerr << "check2" << std::endl;
 	if (!isEqual(a, b)) {
 		return std::make_pair(false, 0);
 	} else {
@@ -129,6 +131,7 @@ std::pair<bool, double> pushFrontChecker() {
 }
 
 std::pair<bool, double> insertChecker() {
+  //std::cerr << "insert check" << std::endl;
 	std::deque<Int> a;
 	sjtu::deque<Int> b;
 	timer.init();
@@ -139,6 +142,7 @@ std::pair<bool, double> insertChecker() {
 		b.push_back(tmp);
 	}
 	timer.stop();
+  //std::cerr << "finish" << std::endl;
 	if (!isEqual(a, b)) {
 		return std::make_pair(false, 0);
 	} else {
@@ -147,6 +151,7 @@ std::pair<bool, double> insertChecker() {
 }
 
 std::pair<bool, double> popBackChecker() {
+  //std::cerr << "check1" << std::endl;
 	std::deque<Int> a;
 	sjtu::deque<Int> b;
 	for (int i = 0; i < N; i++) {
@@ -161,6 +166,7 @@ std::pair<bool, double> popBackChecker() {
 		b.pop_back();
 	}
 	timer.stop();
+  //std::cerr << "ccheck2" << std::endl;
 	if (!isEqual(a, b)) {
 		return std::make_pair(false, 0);
 	} else {

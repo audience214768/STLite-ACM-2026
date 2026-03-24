@@ -1,5 +1,6 @@
 // provided by your new friend Mercy. Enjoy!
 
+#include <cstdio>
 #include <iostream>
 #include <ctime>
 #include <vector>
@@ -17,9 +18,9 @@ static const int MAX_N = 8000;
 
 template <typename Ans, typename Test>
 bool isEqual(Ans &ans, Test &test) {
+    //puts("begin  equal");
     if (ans.size() != test.size())
         return false;
-
     if (ans.empty()) return true;
 
     for (int i = 0; i < ans.size(); i++) {
@@ -29,11 +30,11 @@ bool isEqual(Ans &ans, Test &test) {
             if (ans.at(i) != test.at(i)) return false;
         }
     }
-
+    //puts("check");
     if (ans.empty() != test.empty() || ans.front() != test.front() ||
         ans.back() != test.back())
         return false;
-
+    //puts("check");
     return true;
 }
 
@@ -87,29 +88,31 @@ bool popTest() {
 }
 
 bool insertTest() {
+  //std::cerr << "insert" << std::endl;
     std::deque<int> ans, ans2, ans3;
     sjtu::deque<int> deq, deq2, deq3;
-
     for (int i = 0; i < 100; i++) {
         int x = randnum();
         int pos = (ans.size() == 0 ? 0 : randnum() % ans.size());
-
         switch (randnum() % 2) {
-            case 0: deq.insert(deq.begin() + pos, x);
+            case 0: 
+                    deq.insert(deq.begin() + pos, x);
                     ans.insert(ans.begin() + pos, x);
                     break;
-            case 1: deq.insert(deq.end() - pos, x);
+            case 1: 
+                    deq.insert(deq.end() - pos, x);
                     ans.insert(ans.end() - pos, x);
                     break;
         }
     }
-
     ans2.insert(ans2.begin(), 0x5d); ans3.insert(ans3.end(), 93);
-    deq2.insert(deq2.begin(), 0x5d); deq3.insert(deq3.end(), 93);
-
+    deq2.insert(deq2.begin(), 0x5d);
+    deq3.insert(deq3.end(), 93);
+    //std::cerr << deq2.size() << " " << deq2[0] << std::endl;
+    //std::cerr << ans2.size() << " " << ans2[0] << std::endl;
     if (!isEqual(ans2, deq2) || !isEqual(ans3, deq3))
         return false;
-
+    
     return isEqual(ans, deq);
 }
 bool iteratorTest() {
@@ -260,7 +263,6 @@ bool copyAndClearTest() {
     {
         std::deque<DynamicType> ans;
         sjtu::deque<DynamicType> deq, deq2 = deq, deq3(deq2);
-
         // empty copy and clear
         deq.clear(); deq2.clear();  deq3.clear();
         deq = deq = deq; deq2 = deq3; deq3 = deq = deq3 = deq2;
@@ -306,7 +308,6 @@ bool memoryTest() {
         ans.push_back(DynamicType(&ansCounter));
         deq.push_back(DynamicType(&myCounter));
     }
-
     for (int i = 0; i < MAX_N / 10; i++) {
         int index = randnum() % ans.size();
         switch(randnum() % 6) {
@@ -328,11 +329,9 @@ bool memoryTest() {
                     break;
             default : break;
         }
-
         if (ansCounter != myCounter)
             return false;
     }
-
     return isEqual(ans, deq);
 }
 
@@ -388,7 +387,6 @@ bool dfs(int deep, std::deque<T> ans, sjtu::deque<T> deq) {
 bool dfs2(int deep, std::deque<DynamicType> ans, sjtu::deque<DynamicType> deq) {
     if (deep == 0)
         return true;
-
     DynamicType tmp(&noUseCounter), tmp2(&noUseCounter);
     switch (randnum() % 6) {
         case 0: ans.insert(++ans.begin(), DynamicType(&ansCounter));
@@ -414,7 +412,6 @@ bool dfs2(int deep, std::deque<DynamicType> ans, sjtu::deque<DynamicType> deq) {
                 (*deq.begin()->pct)++;
                 break;
     }
-
     if (isEqual(ans, deq) && ansCounter == myCounter)
         return dfs2(deep / 2, ans, deq);
     else
@@ -430,15 +427,18 @@ bool nomercyTest() {
         randnumFill(ans, deq, 100000);
         if (!dfs(19960904, ans, deq))
             return false;
-
+        //puts("check");
         std::deque<DynamicType> ans2;
         sjtu::deque<DynamicType> deq2;
         for (int i = 0; i < 6000; i++) {
+          //std::cerr << i << std::endl;
             ans2.push_front(DynamicType(&ansCounter));
             deq2.push_front(DynamicType(&myCounter));
         }
+        //puts("check");
         if (!dfs2(19960904, ans2, deq2))
             return false;
+        //puts("check");
     }
     return ansCounter == myCounter;
 }

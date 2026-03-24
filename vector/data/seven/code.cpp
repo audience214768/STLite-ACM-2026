@@ -9,6 +9,7 @@
 #include "vector.hpp"
 
 void test_construct() {  // vector(const vector &other)
+  //puts("test construct");
 	sjtu::vector<std::vector<int>> a;
 	a.push_back(std::vector<int>{0, 1, 2});
 	sjtu::vector<std::vector<int>> b = a;
@@ -23,6 +24,7 @@ void test_construct() {  // vector(const vector &other)
 }
 
 void test_assign() {  // vector& operator=(const vector &other)
+  //puts("test assign");
 	sjtu::vector<std::vector<int>> a;
 	a.push_back(std::vector<int>{0, 1, 2});
 	sjtu::vector<std::vector<int>> b;
@@ -39,6 +41,7 @@ void test_assign() {  // vector& operator=(const vector &other)
 }
 
 void test_resize() {
+  //puts("test resize");
 	sjtu::vector<std::vector<int>> a;
 	for (int i = 0; i < 10; ++i)
 		a.push_back(std::vector<int>{1, 2});
@@ -63,6 +66,7 @@ void test_resize() {
 }
 
 void test_clear() {
+  //puts("test clear");
 	sjtu::vector<std::vector<int>> a;
 	for (int i = 0; i < 10; ++i)
 		a.push_back(std::vector<int>{1, 2});
@@ -79,6 +83,7 @@ void test_clear() {
 }
 
 void test_insert() {
+  //puts("test insert");
 	sjtu::vector<std::vector<int>> a;
 	for (int i = 0; i < 10; ++i)
 		a.push_back(std::vector<int>{1, 2});
@@ -111,6 +116,7 @@ void test_insert() {
 
 void test_iterator() {
 	// Modified by 庄裕旻: remove some UB, only test cross container comparison in fixed condtiion
+  //puts("test iterator");
 	sjtu::vector<int> a;
 	sjtu::vector<int> b;
 	a.push_back(1);
