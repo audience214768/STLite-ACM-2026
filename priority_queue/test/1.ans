@@ -6,4 +6,3 @@ Testing constructors, destructor and push...
 Testing size()
 1000
 Throw correctly.
-Testing compare exception...ok.

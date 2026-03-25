@@ -175,6 +175,7 @@ bool TestExceptions() {
     try {
         sjtu::priority_queue<int> pq;
         for (int i = 0; i < 100; ++i) pq.push(i);
+        
         for (int i = 0; i < 100; ++i) pq.pop();
         pq.pop();
     } catch (sjtu::container_is_empty&) {

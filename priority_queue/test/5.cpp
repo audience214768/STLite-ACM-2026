@@ -23,12 +23,17 @@ bool testmerge() {
     for (int i = 1; i <= MAXB; i++) {
         pq2.push(buffer[++pointer] = rand());
     }
+    //std::cerr << "check1" << std::endl;
     pq1.merge(pq2);
+    //std::cerr << "check2" << std::endl;
     if (!pq2.empty()) {
         return false;
     } else {
+        //std::cerr << "check1" << std::endl;
         std::sort(buffer + 1, buffer + pointer + 1);
+        //std::cerr << "check2" << std::endl;
         while (pointer > 0) {
+          //std::cerr << pq1.top() << std::endl;
             if (pq1.top() != buffer[pointer]) {
                 return false;
             }

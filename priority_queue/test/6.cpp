@@ -203,9 +203,10 @@ bool test2() {
         }
     }
     // do not trigger exception at copy construction.
+    //std::cerr << pq.size() << std::endl;
     auto expected_state = deheapify(pq);
     sjtu::priority_queue<ExtNat, DizzyCompare> pq_replica = pq;
-
+    //std::cerr << pq_replica.size() << std::endl;
     DizzyCompare::be_bad();
     bool exceptionRight = false;
     try {
@@ -218,6 +219,7 @@ bool test2() {
                   << std::endl;
         return false;
     }
+    //std::cerr << pq_replica.size() << std::endl;
     if (!exceptionRight) {
         // Not throwing an exception is also acceptable (But how did you do it?
         // :P). Update the state to expect.
@@ -315,7 +317,7 @@ bool test4() {
     auto expected_state2 = deheapify(pq2);
     sjtu::priority_queue<ExtNat, DizzyCompare> pq1_replica = pq1;
     sjtu::priority_queue<ExtNat, DizzyCompare> pq2_replica = pq2;
-
+    //std::cerr << "check" << std::endl;
     DizzyCompare::be_bad();
     bool exceptionCaught = false;
     try {
@@ -415,7 +417,9 @@ int main() {
                  "# The following is what shall be output through stdout.\n"
               << std::flush;
     test1();
-    test2<0>(); test2<1>(); test2<2>();
+    test2<0>(); 
+    test2<1>(); 
+    test2<2>();
     test3<1>(); test3<2>(); test3<3>();
     test4<1>(); test4<2>(); test4<3>();
     test5();

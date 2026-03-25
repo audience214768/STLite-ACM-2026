@@ -10,7 +10,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
-add_subdirectory(vector)
-add_subdirectory(deque)
+#add_subdirectory(vector)
+#add_subdirectory(deque)
 add_subdirectory(priority_queue)
 enable_testing()
+
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")

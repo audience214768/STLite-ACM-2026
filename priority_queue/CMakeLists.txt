@@ -17,6 +17,7 @@ function(add_priority_queue_test test_id)
       && diff -ubB ${CMAKE_CURRENT_SOURCE_DIR}/test/${test_id}.ans ${CMAKE_CURRENT_BINARY_DIR}/${test_id}.out >${CMAKE_CURRENT_BINARY_DIR}/${test_id}.diff"  )
 endfunction()
 
+#add_priority_queue_test(0)
 add_priority_queue_test(1)
 add_priority_queue_test(2)
 add_priority_queue_test(3)
